@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NERV STORE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>NERV STORE</h1>
+    <button id="toggle-cart">🛒 Carrinho (<span id="cart-count">0</span>)</button>
+    <button id="btn-sair" title="Sair para o perfil">SAIR</button>
+  </header>
+
+  <main>
+    <section id="products">
+      <!-- Produtos via JS -->
+    </section>
+
+    <aside id="cart">
+      <h2>Carrinho</h2>
+      <ul id="cart-items"></ul>
+      <p>Total: ¥ <span id="cart-total">0.00</span></p>
+      <div class="cart-actions">
+        <button id="clear-cart">🗑 Limpar Carrinho</button>
+        <button id="close-cart">⬅ Voltar</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script1.js"></script>
+  <script>
+    // Ao clicar no botão sair, redireciona para perfil.html
+    document.getElementById('btn-sair').addEventListener('click', () => {
+      window.location.href = '../perfil.html';
+    });
+  </script>
+</body>
+</html>

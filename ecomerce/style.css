@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+:root {
+  --bg-color: #0d0d0d;
+  --primary: #6f00ff;
+  --accent: #00ff90;
+  --text: #f2f2f2;
+  --danger: #ff0033;
+}
+
+body {
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
+  background: var(--bg-color);
+  color: var(--text);
+}
+
+header {
+  background: var(--primary);
+  color: #fff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 2px;
+  text-shadow: 0 0 4px #000;
+}
+
+button {
+  background: var(--accent);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--accent);
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 0 12px var(--danger);
+}
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.product {
+  background: #1a1a1a;
+  border: 1px solid var(--primary);
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 10px #00000080;
+  transition: transform 0.3s;
+}
+
+.product:hover {
+  transform: scale(1.03);
+  border-color: var(--accent);
+}
+
+.product img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  object-position: center;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 0.5rem;
+  background-color: #000; /* opcional: fundo de contraste */
+  padding: 0.5rem; /* dá espaço se a imagem não preencher */
+}
+
+
+#cart {
+  position: fixed;
+  top: 60px;
+  right: -350px;
+  width: 300px;
+  background: #111;
+  border-left: 2px solid var(--danger);
+  padding: 1rem;
+  transition: right 0.3s;
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  color: var(--text);
+  box-shadow: -5px 0 10px #ff003380;
+}
+
+#cart.open {
+  right: 0;
+}
+
+#cart h2 {
+  color: var(--danger);
+  margin-bottom: 1rem;
+}
+
+#cart-items li {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px dashed #333;
+  padding-bottom: 4px;
+}
+
+#cart-total {
+  font-weight: bold;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.cart-actions button {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+#cart-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.remove-btn {
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  box-shadow: 0 0 6px var(--danger);
+  margin-left: 8px;
+  border-radius: 4px;
+}
+
+.remove-btn:hover {
+  background: #ff3344;
+  box-shadow: 0 0 10px #ff3344;
+}

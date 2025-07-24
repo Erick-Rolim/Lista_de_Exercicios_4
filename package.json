@@ -1,0 +1,16 @@
+{
+  "name": "lista.de.exercicios.4",
+  "version": "1.0.0",
+  "description": "Este é um projeto de página de perfil pessoal criado como parte do curso de desenvolvimento web. O objetivo é demonstrar habilidades em HTML5 semântico e CSS3 avançado, incluindo Flexbox, CSS Grid, responsividade e animações.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}

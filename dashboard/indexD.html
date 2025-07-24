@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NERV Tactical Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --primary: #6f00ff;
+      --accent: #00ff90;
+      --text: #f2f2f2;
+      --danger: #ff0033;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: var(--bg-color);
+      color: var(--text);
+      display: flex;
+    }
+
+    #sidebar {
+      width: 220px;
+      height: 100vh;
+      background: #111;
+      border-right: 2px solid var(--primary);
+      padding: 2rem 1rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    #sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    #sidebar li {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background: #1a1a1a;
+      border-left: 4px solid var(--accent);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #sidebar li:hover {
+      background: var(--danger);
+      color: white;
+      border-left-color: white;
+    }
+
+    main {
+      margin-left: 220px;
+      padding: 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid var(--primary);
+      padding: 1rem;
+      box-shadow: 0 0 10px #00000080;
+      border-radius: 10px;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .stat {
+      flex: 1 1 250px;
+      background: #111;
+      padding: 1rem;
+      border-left: 4px solid var(--accent);
+      font-size: 1.5rem;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    #alarm-banner {
+      position: fixed;
+      top: 0;
+      left: 220px;
+      right: 0;
+      height: 40px;
+      background: var(--danger);
+      color: #fff;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      animation: blink 1s infinite;
+      z-index: 99;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    section {
+      scroll-margin-top: 60px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <aside id="sidebar">
+    <nav>
+      <ul>
+        <li onclick="navigateTo('sync-section')">DASHBOARD</li>
+        <li onclick="navigateTo('units-section')">UNIDADES</li>
+        <li onclick="navigateTo('monitor-section')">MONITORAMENTO</li>
+        <li onclick="navigateTo('systems-section')">SISTEMAS</li>
+       <li onclick="location.href='../perfil.html'">SAIR</li>
+       
+
+      </ul>
+    </nav>
+  </aside>
+
+  <div id="alarm-banner">⚠ ALERTA ATIVO – UNIDADE FORA DE SINCRONIA ⚠</div>
+
+  <main id="top">
+    <section id="sync-section" class="card">
+      <h3>Sincronização</h3>
+      <canvas id="syncChart"></canvas>
+    </section>
+
+    <section id="units-section" class="stats">
+      <div class="stat">UNIDADES ATIVAS: <span id="unitsActive">3</span></div>
+      <div class="stat">ENERGIA ATUAL: <span id="currentPower">1020</span> MW</div>
+      <div class="stat">ALARMES: <span id="alarms">0</span></div>
+    </section>
+
+    <section id="monitor-section" class="card">
+      <h3>Monitoramento</h3>
+      <p>Status dos sistemas em tempo real.</p>
+    </section>
+
+    <section id="systems-section" class="card">
+      <h3>Sistemas</h3>
+      <p>Gerenciamento de rotas, segurança e protocolos NERV.</p>
+    </section>
+  </main>
+
+  <script>
+    function navigateTo(sectionId) {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    const ctx = document.getElementById('syncChart').getContext('2d');
+    const syncChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: Array.from({length: 20}, (_, i) => `T-${20 - i}s`),
+        datasets: [{
+          label: 'Sincronização (%)',
+          data: Array.from({length: 20}, () => Math.random() * 100),
+          borderColor: '#00ff90',
+          backgroundColor: 'rgba(0, 255, 144, 0.2)',
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true, max: 100, ticks: { color: '#f2f2f2' }, grid: { color: '#333' } },
+          x: { ticks: { color: '#f2f2f2' }, grid: { color: '#333' } }
+        },
+        plugins: {
+          legend: { labels: { color: '#f2f2f2' } }
+        }
+      }
+    });
+
+    function triggerAlarm() {
+      document.getElementById('alarm-banner').style.display = 'flex';
+    }
+
+    const ws = new WebSocket('ws://localhost:3000');
+
+    ws.onmessage = (event) => {
+      const { sync, units, power, alarms } = JSON.parse(event.data);
+      
+      syncChart.data.datasets[0].data.push(sync);
+      syncChart.data.datasets[0].data.shift();
+      syncChart.update();
+
+      document.getElementById('unitsActive').textContent = units;
+      document.getElementById('currentPower').textContent = power;
+      document.getElementById('alarms').textContent = alarms;
+
+      if (alarms > 0) triggerAlarm();
+    };
+  </script>
+</body>
+</html>

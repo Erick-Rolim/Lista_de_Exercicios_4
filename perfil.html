@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Pessoal Erick [PILOTO] - Unidade 01</title>
+    <meta name="description" content="Terminal de Acesso - Perfil Operacional do Piloto Erick.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header id="inicio">
+        <div class="header-content">
+            <img src="images/Akira Loudsonic GIF by Septian Tito.gif" alt="ID do Piloto Erick" class="profile-pic">
+            <h1>PILOTO: ERICK WELLINGTON F. ROLIM</h1>
+            <p class="slogan">// STATUS: OPERACIONAL //</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#sobre" class="nav-link active">[DADOS]</a></li>
+                <li><a href="#habilidades" class="nav-link">[SINCRONIZAÇÃO]</a></li>
+                <li><a href="#projetos" class="nav-link">[MISSÕES]</a></li>
+                <li><a href="#contato" class="nav-link">[COMUNICAÇÃO]</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="page-container">
+        <section id="sobre" class="pagina fade-in">
+            <div class="page-content">
+                <h2><span class="glitch" data-text="DADOS DO PILOTO">DADOS DO PILOTO</span></h2>
+                <div class="dual-layout">
+                    <article>
+                        <p>Analisando dados... Piloto identificado como um desenvolvedor apaixonado por tecnologia e soluções criativas. Taxa de sincronização com código se aproxima de 98.7%.</p>
+                        <p>Especialista na construção de aplicações web robustas e escaláveis, com foco total na experiência do usuário final. Histórico de combate iniciado com um simples "Hello, World!" em um terminal antigo. Desde então, em constante evolução e aprendizado de novas táticas de desenvolvimento.</p>
+                        <p>Modo offline ativado durante expedições fotográficas e viagens, acumulando dados para resolução criativa de problemas complexos.</p>
+                    </article>
+                    <div class="gif-container">
+                        <img src="images/Neon Genesis Evangelion GIF.gif" alt="EVA Unit 01">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades" class="pagina fade-in">
+            <div class="page-content">
+                <h2><span class="glitch" data-text="STATUS DE SINCRONIZAÇÃO">STATUS DE SINCRONIZAÇÃO</span></h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>[FRONT-END]</h3>
+                        <ul>
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>[BACK-END]</h3>
+                        <ul>
+                            <li>Node.js</li>
+                            <li>Python</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>[ARSENAL TÁTICO]</h3>
+                        <ul>
+                            <li>Git & GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projetos" class="pagina fade-in">
+            <div class="page-content">
+                <h2><span class="glitch" data-text="REGISTRO DE MISSÕES">REGISTRO DE MISSÕES</span></h2>
+                <div class="projects-container">
+                    <article class="project-card">
+                        <h3>PROJETO: E-COMMERCE</h3>
+                        <p>Desenvolvimento de plataforma de compra de Mechas</p>
+                        <a href="ecomerce/index.html" class="btn-project">[ACESSAR DADOS]</a>
+                    </article>
+                    <article class="project-card">
+                        <h3>PROJETO: DASHBOARD</h3>
+                        <p>Criação de painel administrativo para visualização de dados táticos em tempo real. Interface reativa e de alta performance.</p>
+                        <a href="dashboard/indexD.html" class="btn-project">[VER SIMULAÇÃO]</a>
+                </div>
+            </div>
+        </section>
+        
+        <aside id="contato" class="pagina fade-in">
+            <div class="page-content">
+                <h2><span class="glitch" data-text="CANAL DE COMUNICAÇÃO">CANAL DE COMUNICAÇÃO</span></h2>
+                <p>Canais de comunicação abertos para novas diretivas e projetos colaborativos. Aguardando contato.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/erick-wellington-figueir%C3%B3-rolim-58984b279/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/Erick-Rolim" target="_blank">GitHub</a>
+                </div>
+                 <div class="gif-container small-gif">
+                     <img src="images/Pixel Battle GIF.gif" alt="NERV Logo">
+                </div>
+            </div>
+        </aside>
+    </main>
+    
+    <button id="prev-btn" class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+    <button id="next-btn" class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="navigation-dots"></div>
+
+    <footer class="footer-terminal">
+        <p>// NERV - ALL RIGHTS RESERVED - 2025 // SYSTEM TIME: <span id="system-time"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
